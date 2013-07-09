@@ -1,0 +1,19 @@
+sub Sqrt [x] {
+	l = 0;
+	r = x;
+
+	while r - l > 1e-10 do {
+		c = (l + r) / 2;
+		if c * c < x -> l = c | r = c
+	};
+
+	ret l
+};
+
+sub Main [] {
+	x = 0;
+	=>> x;
+	<<= Sqrt (x);
+	ret 0
+}
+

@@ -1,0 +1,22 @@
+sub Fact [n] {
+	r = 1;
+
+	if n <= 0 -> r = 0 | {
+		N = n;
+
+		while N > 1 do { 
+			r = r * N;
+			N = N - 1
+		}
+	};
+
+	ret r
+};
+
+sub Main [] {
+	n = 0;
+	=>> n;
+	<<= Fact (n);
+	ret 0
+}
+

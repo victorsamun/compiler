@@ -1,17 +1,14 @@
 #ifndef _BINARY_OPERATION_TRAITS_HPP_
 #define _BINARY_OPERATION_TRAITS_HPP_
 
-#include <memory>
 #include "llvm/Support/IRBuilder.h"
 #include "llvm/Value.h"
-#include "new_functional.hpp"
 
 using llvm::IRBuilder;
 using llvm::Value;
 using llvm::Twine;
-using std::auto_ptr;
 
-typedef auto_ptr <fun_4arg <IRBuilder <> *, Value *, Value *, const Twine &, Value *> > BinaryOperationGenerator;
+typedef Value * (IRBuilder <>::* BinaryOperationGenerator) (Value *, Value *, const Twine &);
  
 template <typename Operation>
 struct BinaryOperationTraits {

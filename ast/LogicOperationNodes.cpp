@@ -1,22 +1,16 @@
 #include "LogicOperationNodes.hpp"
-#include "new_functional.hpp"
 #include "indent.hpp"
-#include <memory>
 #include <iostream>
 
-using std::auto_ptr;
 using std::cout;
 
 template <> const char * const BinaryOperationTraits <AndOp>::sign = "&&";
 template <> const char * const BinaryOperationTraits <OrOp>::sign = "||";
 template <> const char * const BinaryOperationTraits <XorOp>::sign = "^";
 
-template <> BinaryOperationGenerator BinaryOperationTraits <AndOp>::generator
-	(ptr_mem_fun3 <IRBuilder <>, Value *, Value *, const Twine &, Value *> (& IRBuilder <>::CreateAnd));
-template <> BinaryOperationGenerator BinaryOperationTraits <OrOp>::generator
-	(ptr_mem_fun3 <IRBuilder <>, Value *, Value *, const Twine &, Value *> (& IRBuilder <>::CreateOr));
-template <> BinaryOperationGenerator BinaryOperationTraits <XorOp>::generator
-	(ptr_mem_fun3 <IRBuilder <>, Value *, Value *, const Twine &, Value *> (& IRBuilder <>::CreateXor));
+template <> BinaryOperationGenerator BinaryOperationTraits <AndOp>::generator (& IRBuilder <>::CreateAnd);
+template <> BinaryOperationGenerator BinaryOperationTraits <OrOp>::generator (& IRBuilder <>::CreateOr);
+template <> BinaryOperationGenerator BinaryOperationTraits <XorOp>::generator (& IRBuilder <>::CreateXor);
 
 NotOperationNode::NotOperationNode (IASTNode * left)
 	: left (left) { }

@@ -46,16 +46,22 @@ public:
 
 	operator T * (void) const { return c->get (); }
 
-	bool operator == (const shared_ptr <T> & rhs) const { return c == rhs.c; }
-
-	bool operator != (const shared_ptr <T> & rhs) const { return ! (* this == rhs); }
-
 	~shared_ptr (void) {
 		c->release_ref ();
 		if (! c->is_shared ())
 			delete c;
 	}
 };
+
+template <typename T>
+inline bool operator == (const shared_ptr <T> & lhs, const shared_ptr <T> & rhs) {
+	return static_cast <T *> (lhs) == static_cast <T *> (rhs);
+}
+
+template <typename T>
+inline bool operator != (const shared_ptr <T> & lhs, const shared_ptr <T> & rhs) {
+	return ! (lhs == rhs);
+}
 
 #endif
 

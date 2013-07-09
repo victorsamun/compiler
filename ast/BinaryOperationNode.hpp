@@ -3,14 +3,15 @@
 
 #include <string>
 #include <iostream>
+#include <memory>
 #include "llvm/Value.h"
 #include "IASTNode.hpp"
-#include "new_functional.hpp"
 #include "BinaryOperationTraits.hpp"
 #include "indent.hpp"
 
 using std::string;
 using std::cout;
+using std::auto_ptr;
 using llvm::Value;
 
 template <typename OperationTraits>
@@ -53,7 +54,7 @@ void BinaryOperationNode <OperationTraits>::Print (size_t indent) const {
 
 template <typename OperationTraits>
 Value * BinaryOperationNode <OperationTraits>::GenerateCode (CodeGeneratorState & state) const {
-	return OperationTraits::generator->operator () (state.builder, this->left->GenerateCode (state), this->right->GenerateCode (state), "tmp");
+	return (state.builder->*(OperationTraits::generator)) (this->left->GenerateCode (state), this->right->GenerateCode (state), "tmp");
 }
 
 #endif

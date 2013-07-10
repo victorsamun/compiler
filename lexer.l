@@ -87,22 +87,17 @@ nl	[\r\n]
 
 %%
 
-void
-Driver::scan_begin (void)
-{
+void Driver::scan_begin (void) {
 	yy_flex_debug = trace_scanning;
 	if (filename == "-")
 		yyin = stdin;
-	else if (! (yyin = fopen (filename.c_str (), "r")))
-	{
+	else if (! (yyin = fopen (filename.c_str (), "r"))) {
 		error (std::string ("cannot open ") + filename);
 		exit (EXIT_FAILURE);
 	}
 }
 
-void
-Driver::scan_end (void)
-{
+void Driver::scan_end (void) {
 	fclose (yyin);
 }
 

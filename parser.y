@@ -342,11 +342,7 @@ compare_expression
 
 %%
 
-void
-yy::Parser::error (
-	const yy::location & l,
-	const std::string & m)
-{
+void yy::Parser::error (const yy::location & l, const std::string & m) {
 	driver.error (m);
 }
 

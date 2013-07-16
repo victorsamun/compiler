@@ -1,7 +1,7 @@
 .PHONY: Build Lexer Parser
 
 Build: Parser Lexer
-	g++ -Iutil -o bin/compiler ast/*.cpp lexer.cpp parser.cpp driver.cpp compiler.cpp `llvm-config --cppflags --ldflags --libs` -ldl
+	g++ -Iutil -o compiler ast/*.cpp lexer.cpp parser.cpp driver.cpp compiler.cpp `llvm-config --cppflags --ldflags --libs` -ldl
 	rm lexer.cpp location.hh parser.cpp parser.hpp position.hh stack.hh
 
 Lexer: lexer.l
